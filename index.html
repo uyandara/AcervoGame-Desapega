@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desapega Belém - O maior marketplace da região</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span>Desapega<strong>Belém</strong></span>
+            </div>
+            
+            <div class="location-picker">
+                <i class="fa-solid fa-location-dot"></i>
+                <select id="header-location">
+                    <option value="all">Toda a Região Metropolitana</option>
+                    <option value="Umarizal">Umarizal, Belém</option>
+                    <option value="Nazaré">Nazaré, Belém</option>
+                    <option value="Batista Campos">Batista Campos, Belém</option>
+                    <option value="Marco">Marco, Belém</option>
+                    <option value="Pedreira">Pedreira, Belém</option>
+                    <option value="Icoaraci">Icoaraci, Belém</option>
+                    <option value="Ananindeua">Ananindeua</option>
+                    <option value="Marituba">Marituba</option>
+                </select>
+            </div>
+
+            <div class="header-actions">
+                <button class="btn-fav" id="btn-show-favs"><i class="fa-regular fa-heart"></i> Favoritos</button>
+                <button class="btn-post" id="btn-open-post"><i class="fa-solid fa-plus"></i> Anunciar</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-box">
+                <div class="input-group search-input">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="search-text" placeholder="Buscar por 'iPhone', 'Geladeira', 'Carro'...">
+                </div>
+                <div class="input-group search-cat">
+                    <select id="filter-category">
+                        <option value="all">Todas as Categorias</option>
+                        <option value="Eletrônicos">Eletrônicos e Celulares</option>
+                        <option value="Veículos">Autos e Peças</option>
+                        <option value="Imóveis">Imóveis</option>
+                        <option value="Casa">Para a sua Casa</option>
+                        <option value="Moda">Moda e Beleza</option>
+                        <option value="Esportes">Esportes e Lazer</option>
+                    </select>
+                </div>
+                <button class="btn-search" id="btn-search"><i class="fa-solid fa-magnifying-glass"></i> Buscar</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container main-layout">
+        <!-- Sidebar Filters -->
+        <aside class="filters-sidebar">
+            <h3>Filtros</h3>
+            
+            <div class="filter-group">
+                <label>Bairro / Cidade</label>
+                <select id="sidebar-location">
+                    <option value="all">Todos os Bairros</option>
+                    <option value="Umarizal">Umarizal</option>
+                    <option value="Nazaré">Nazaré</option>
+                    <option value="Batista Campos">Batista Campos</option>
+                    <option value="Marco">Marco</option>
+                    <option value="Pedreira">Pedreira</option>
+                    <option value="Icoaraci">Icoaraci</option>
+                    <option value="Ananindeua">Ananindeua</option>
+                    <option value="Marituba">Marituba</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Faixa de Preço (R$)</label>
+                <div class="price-inputs">
+                    <input type="number" id="price-min" placeholder="Min">
+                    <span>até</span>
+                    <input type="number" id="price-max" placeholder="Máx">
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <label>Estado do Produto</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" id="cond-novo" value="Novo" checked> Novo</label>
+                    <label><input type="checkbox" id="cond-usado" value="Usado" checked> Usado</label>
+                </div>
+            </div>
+
+            <button class="btn-apply-filters" id="btn-apply-filters">Aplicar Filtros</button>
+        </aside>
+
+        <!-- Product Grid -->
+        <section class="products-section">
+            <div class="products-header">
+                <h2>Anúncios Recentes em Belém</h2>
+                <span id="results-count">Mostrando anúncios</span>
+            </div>
+            <div class="product-grid" id="product-grid">
+                <!-- Anúncios injetados via Javascript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Anunciar -->
+    <div class="modal" id="modal-post">
+        <div class="modal-content">
+            <span class="close-modal" id="close-post">&times;</span>
+            <h2>Criar Novo Anúncio</h2>
+            <form id="form-post">
+                <div class="form-group">
+                    <label>Título do Anúncio</label>
+                    <input type="text" id="post-title" placeholder="Ex: Smart TV 50 polegadas 4K" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Preço (R$)</label>
+                        <input type="number" id="post-price" placeholder="Ex: 1200" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Categoria</label>
+                        <select id="post-category" required>
+                            <option value="Eletrônicos">Eletrônicos e Celulares</option>
+                            <option value="Veículos">Autos e Peças</option>
+                            <option value="Imóveis">Imóveis</option>
+                            <option value="Casa">Para a sua Casa</option>
+                            <option value="Moda">Moda e Beleza</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Bairro / Cidade</label>
+                        <select id="post-location" required>
+                            <option value="Umarizal">Umarizal</option>
+                            <option value="Nazaré">Nazaré</option>
+                            <option value="Batista Campos">Batista Campos</option>
+                            <option value="Marco">Marco</option>
+                            <option value="Pedreira">Pedreira</option>
+                            <option value="Icoaraci">Icoaraci</option>
+                            <option value="Ananindeua">Ananindeua</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Condição</label>
+                        <select id="post-condition" required>
+                            <option value="Usado">Usado</option>
+                            <option value="Novo">Novo</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>URL da Imagem</label>
+                    <input type="url" id="post-image" placeholder="https://exemplo.com/imagem.jpg" required>
+                </div>
+                <div class="form-group">
+                    <label>WhatsApp do Vendedor (com DDD)</label>
+                    <input type="text" id="post-phone" placeholder="91988888888" required>
+                </div>
+                <button type="submit" class="btn-submit">Publicar Anúncio</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
